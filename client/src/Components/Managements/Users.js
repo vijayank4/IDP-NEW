@@ -208,7 +208,7 @@ function Users() {
         }
     }
     return (
-        <>
+        <React.Fragment>
             {loading ? (
                 <Loader />
             ):(
@@ -294,7 +294,7 @@ function Users() {
             </div>
             )}
             <MyModal modalSize="md" centered={true} alertBox={false} headerBgColor="bg-info" closeBgColor="light" saveBgColor="info" saveTextName="Yes" closeTextName="No" titleTextName="Alert" bodyContent="Do you want to delete the selected user!" buttonSize="sm" show={modalShow} handleClickSave={handleModalDeleteClick} handleClickClose={handleClickClose}/>   
-        </>
+        </React.Fragment>
     );
 };
 

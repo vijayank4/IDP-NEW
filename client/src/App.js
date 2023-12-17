@@ -21,41 +21,41 @@ const App = () => {
   const routeProject = global.config.ROUTE_NAME; 
   const routerObject = useSelector(state => state.objectRouters.data[0]);
   return (
-    <>
-    { loading ? (
-      <div className="page-loader">
-          <div className="spinner-border spin-loader text-dark" role="status"></div>
-          <span className="cont-loader">Still loading, Just a moment...</span>
-      </div>
-      ) : (
-        <Router>
-          <Routes>
-            {routerObject && (routerObject.map((route, index) => {
-              try {
-                const Component = require(`./Components/${route.component}`).default;
-                return (
-                  <Route key={index} path={routeProject+route.path} element={<StaticPage showStaticPage="true">
-                    <Component />
-                  </StaticPage>} />
-                );
-              } catch (error) {
-                return (<Route key={index} path={routeProject+route.path} element={<ModuleNotFound />}/>)
-              }
-            }))}
-            <Route path={routeProject+"/login"} element={<Login />}/>
-            <Route path={routeProject+"/logout"}  element={<Logout />} />
-            <Route path={routeProject+"/forgotpassword"}  element={<ForgotPassword />}/>
-            <Route path={routeProject+"/sessionexpired"}  element={<SessionExpired />}/>
-            <Route path={routeProject+"/myaccount"}  element={<StaticPage showStaticPage="true"><UserProfile /></StaticPage>}/>
-            <Route path="/*" element={<PrivateRoute />}/>
-            <Route path="/" element={<Navigate replace to={routeProject+"/login"} /> }/>
-          </Routes>
-          {GetCookies('access_user') !== undefined && (<SessionTimeout />)}
-          {GetCookies('access_user') !== undefined && (<RefreshSessionTime />)}
-          {GetCookies('access_user') !== undefined && (<NotFound />)}
-        </Router>
+    <React.Fragment>
+      { loading ? (
+        <div className="page-loader">
+            <div className="spinner-border spin-loader text-dark" role="status"></div>
+            <span className="cont-loader">Still loading, Just a moment...</span>
+        </div>
+        ) : (
+          <Router>
+            <Routes>
+              {routerObject && (routerObject.map((route, index) => {
+                try {
+                  const Component = require(`./Components/${route.component}`).default;
+                  return (
+                    <Route key={index} path={routeProject+route.path} element={<StaticPage showStaticPage="true">
+                      <Component />
+                    </StaticPage>} />
+                  );
+                } catch (error) {
+                  return (<Route key={index} path={routeProject+route.path} element={<ModuleNotFound />}/>)
+                }
+              }))}
+              <Route path={routeProject+"/login"} element={<Login />}/>
+              <Route path={routeProject+"/logout"}  element={<Logout />} />
+              <Route path={routeProject+"/forgotpassword"}  element={<ForgotPassword />}/>
+              <Route path={routeProject+"/sessionexpired"}  element={<SessionExpired />}/>
+              <Route path={routeProject+"/myaccount"}  element={<StaticPage showStaticPage="true"><UserProfile /></StaticPage>}/>
+              <Route path="/*" element={<PrivateRoute />}/>
+              <Route path="/" element={<Navigate replace to={routeProject+"/login"} /> }/>
+            </Routes>
+            {GetCookies('access_user') !== undefined && (<SessionTimeout />)}
+            {GetCookies('access_user') !== undefined && (<RefreshSessionTime />)}
+            {GetCookies('access_user') !== undefined && (<NotFound />)}
+          </Router>
       )}
-    </>
+    </React.Fragment>
   );
 }
 

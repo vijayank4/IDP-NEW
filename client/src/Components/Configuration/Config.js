@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from 'react-router-dom';
 import decryption from '../Cryptojs/Decryption';
@@ -7,6 +7,7 @@ import EditConfig from './EditConfig';
 import ConfigTableList from './ConfigTableList';
 import Loader from '../Layouts/Loader';
 import $ from 'jquery';
+import toastr from 'toastr';
 
 const Config = () => {
    
@@ -22,14 +23,13 @@ const Config = () => {
     const [pageCount, setPageCount] = useState(0);
     const [searchText, setSearchText] = useState('');
     const navigate = useNavigate();
-    const [key, setKey] = useState(0);
     useEffect(() => {
         const fetchData = async () => {
             $('.slider-progress-bar').show();
             $('.slider-progress-bar').css({"width": "0%"});
             setDataLoading(true);
-            const routeProject = global.config.ROUTE_NAME;
             try {
+                $('.slider-progress-bar').css({"width": "100%"});
                 setTimeout(() => {
                     setLoading(false);
                     setDataLoading(false);
@@ -47,12 +47,18 @@ const Config = () => {
                     setPageCount(roundedUp);
                 }, 200); 
             } catch (error) {
-                navigate(routeProject+'/servererror');
+                toastr.error(error.message+'!', 'Error', {
+                    timeOut: 3000,
+                    progressBar: true,
+                    closeButton: true,
+                    showMethod: 'slideDown',
+                    hideMethod: 'slideUp',
+                });
             } 
         };
         fetchData();
         
-    }, [pageOffset,searchText,navigate,key]);
+    }, [pageOffset,searchText,navigate]);
 
     const handlePageClick = (event) => {
         setPageOffset(event.selected);
@@ -95,7 +101,7 @@ const Config = () => {
     }
 
     return (
-        <>
+        <Fragment>
             {loading ? (
                 <Loader />
             ):(
@@ -180,7 +186,7 @@ const Config = () => {
                 </div>
             </div>
             )}
-        </>
+        </Fragment>
     )
 }
 

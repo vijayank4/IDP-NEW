@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from 'react-router-dom';
@@ -187,7 +187,7 @@ function Roles() {
     }
 
     return (
-        <>
+        <Fragment>
             {loading ? (
                 <Loader />
             ):(
@@ -300,7 +300,7 @@ function Roles() {
                 </div>
             </div>
             )}
-        </>
+        </Fragment>
     );
 };
 

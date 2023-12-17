@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Toaste from '../Toaste';
@@ -173,7 +173,7 @@ const EditRoleFeature = (props) => {
         }
     }
     return (
-        <>
+        <Fragment>
             <Toaste show={showToast} onClose={handleCloseToast} message={errorMsg} bgColor="bg-danger"/>
             <SimpleBar className="mb-3" style={{maxHeight:400,minHeight:300,overflowX:'hidden'}}>
                 <div className="row mb-2" style={{minHeight:300}}>
@@ -214,7 +214,7 @@ const EditRoleFeature = (props) => {
                     <button onClick={props.handleRoleViewClick} id="backBtn" className="btn btn-light btn-sm"><i className="mdi mdi-arrow-left-bold-circle me-1"></i>Back</button>
                 </div>
             </div>
-        </>
+        </Fragment>
     )
 }
 
