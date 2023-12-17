@@ -50,9 +50,13 @@ const App = () => {
               <Route path="/*" element={<PrivateRoute />}/>
               <Route path="/" element={<Navigate replace to={routeProject+"/login"} /> }/>
             </Routes>
-            {GetCookies('access_user') !== undefined && (<SessionTimeout />)}
-            {GetCookies('access_user') !== undefined && (<RefreshSessionTime />)}
-            {GetCookies('access_user') !== undefined && (<NotFound />)}
+            {GetCookies('access_user') !== undefined && (
+              <React.Fragment>
+                <SessionTimeout />
+                <RefreshSessionTime />
+                <NotFound />
+              </React.Fragment>
+            )}
           </Router>
       )}
     </React.Fragment>
