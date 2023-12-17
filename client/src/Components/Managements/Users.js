@@ -162,7 +162,7 @@ function Users() {
         const encryptedData = encryption(postData);
         try {
             setPageOffset(0);
-            const postUrl = global.config.API_URL+'/delete_user';
+            const postUrl = global.config.PUBLIC_URL+'/api/delete_user';
             const response = await axios.post(postUrl, {encryptedData});
             const responseJson = JSON.parse(decryption(response.data));
             
@@ -175,6 +175,9 @@ function Users() {
                     showMethod: 'slideDown',
                     hideMethod: 'slideUp',
                 });
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 3000)
             }
             else if(responseJson.result === 1001)
             {

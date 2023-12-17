@@ -1,5 +1,5 @@
 global.config = {
-    "PUBLIC_URL": "http://192.168.1.22:8080",
+    "PUBLIC_URL": "http://192.168.1.24:8080",
     "ROUTE_NAME": "/aotm",
     "SESSION_TIME": "15",
     "SESSION_IDLE_TIME": "15",

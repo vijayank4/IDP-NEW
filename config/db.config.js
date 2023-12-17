@@ -4,5 +4,5 @@ module.exports = {
   PASSWORD: "root@9*",
   DATABASE: "epo_eastman",
   dialect: "mysql",
-  PORT:"3308"
+  PORT:"3306"
 };
