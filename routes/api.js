@@ -1,0 +1,32 @@
+const express = require('express');
+const multer = require('multer');
+const router = express.Router();
+const AuthController = require('../controllers/AuthController');
+const EncryptController = require('../controllers/EncryptController');
+const UserController = require('../controllers/UserController');
+const RoleController = require('../controllers/RoleController');
+const ConfigController = require('../controllers/ConfigController');
+const storage = multer.memoryStorage(); 
+const upload = multer({ storage: storage });
+
+router.post('/login', AuthController.login);
+router.post('/logout', AuthController.logout);
+router.post('/get_user_role_details', UserController.getUserRoleDetails);
+router.post('/imgencrypt', EncryptController.getImgEncrypt);
+router.post('/get_user_list', UserController.getUserList);
+router.get('/get_location', UserController.getLocation);
+router.get('/get_roles', UserController.getRoles);
+router.post('/create_user',upload.single('uploadimage'), UserController.createUser);
+router.post('/update_user',upload.single('uploadimage'), UserController.updateUser);
+router.post('/delete_user', UserController.deleteUser);
+router.post('/get_role_list', RoleController.getRoleList);
+router.get('/get_project', UserController.getProject);
+router.get('/get_feature', RoleController.getRoleteFeature);
+router.get('/get_feature', RoleController.getRoleteFeature);
+router.post('/create_role', RoleController.createRole);
+router.post('/get_feature_role_data', RoleController.getEditFeatureRole);
+router.post('/update_role', RoleController.updateRole);
+router.get('/get_config', ConfigController.getConfigJson);
+router.post('/update_config', ConfigController.updateConfig);
+
+module.exports = router;
