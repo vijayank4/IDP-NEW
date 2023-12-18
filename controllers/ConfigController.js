@@ -10,7 +10,7 @@ class ConfigController {
             const xmlFilePath = 'app_config.xml';
             fs.readFile(xmlFilePath, 'utf-8', (err, data) => {
                 xml2js.parseString(data, { explicitArray: false }, (parseErr, result) => {
-                    console.log(parseErr)
+                    //console.log(parseErr)
                     req.session.config = result.app_config;
                     res.status(200).json(Encrypt.getEncrypt(JSON.stringify({data:req.session, message: "Success"})));
                 });

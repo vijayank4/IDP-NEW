@@ -53,7 +53,7 @@ class UserController {
             const rolesArr = User.getAllRoles();
             res.status(200).json(Encrypt.getEncrypt(JSON.stringify({result:rolesArr, message: "Success"})));
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             res.status(500).json({ error: error.message });
         }
     }
@@ -85,13 +85,13 @@ class UserController {
             }
             res.status(200).json(Encrypt.getEncrypt(result));
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             res.status(500).json({ error: error.message });
         }
     }
     updateUser (req, res) {
         try {
-            console.log(req.body)
+            //console.log(req.body)
             const result = User.updateUser(req.body, req.file);
             const { file } = req;
             if(file)
@@ -108,7 +108,7 @@ class UserController {
             }
             res.status(200).json(Encrypt.getEncrypt(result));
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             res.status(500).json({ error: error.message });
         }
     }

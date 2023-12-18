@@ -81,7 +81,7 @@ class Role {
     }
     static createNewRole(roleData, featureData)
     {
-        console.log(featureData)
+        //console.log(featureData)
         const chkRoleQry = `SELECT  count(*) as recordcnt FROM epo_role 
                                     where er_role_name=${sqlstring.escape(roleData.rolename)}`;
         const chkRoleArr = db.query(chkRoleQry);

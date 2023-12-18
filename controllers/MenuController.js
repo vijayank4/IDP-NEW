@@ -14,7 +14,7 @@ class MenuController {
             req.session.menu_list = userMenuArr;
             res.status(200).json(Encrypt.getEncrypt(JSON.stringify({result:req.session, message: "Success"})));
         } catch (error) {
-            console.error(error);
+            //console.error(error);
             res.status(500).json({ error: error.message });
         }
     }

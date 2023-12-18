@@ -12,7 +12,6 @@ import PrivateRoute from './Components/Routes/PrivateRoute';
 import UserRoleDetails from './Components/Routes/UserRoleDetails';
 import GetCookies from './Components/Session/GetCookies';
 import StaticPage from './Components/Layouts/StaticPage';
-import UserProfile from './Components/Profile/UserProfile';
 import { useSelector } from 'react-redux';
 
 const App = () => {
@@ -46,7 +45,6 @@ const App = () => {
               <Route path={routeProject+"/logout"}  element={<Logout />} />
               <Route path={routeProject+"/forgotpassword"}  element={<ForgotPassword />}/>
               <Route path={routeProject+"/sessionexpired"}  element={<SessionExpired />}/>
-              <Route path={routeProject+"/myaccount"}  element={<StaticPage showStaticPage="true"><UserProfile /></StaticPage>}/>
               <Route path="/*" element={<PrivateRoute />}/>
               <Route path="/" element={<Navigate replace to={routeProject+"/login"} /> }/>
             </Routes>
