@@ -75,10 +75,11 @@ const AddConfig = (props) => {
             global.updateConfig({
                 [objectData['tagname']] : objectData['tagvalue']
             });
+            props.configJsonData[objectData['tagname']] = objectData['tagvalue'];
             $('.slider-progress-bar').show();
             $('.slider-progress-bar').css({"width": "0%"});
             setDataLoading(true);
-            const encryptedData = encryption(JSON.stringify(global.config))
+            const encryptedData = encryption(JSON.stringify(props.configJsonData))
             const postUrl = global.config.PUBLIC_URL+'/api/update_config';
             try {
                 const response = await axios.post(postUrl, {encryptedData}, {

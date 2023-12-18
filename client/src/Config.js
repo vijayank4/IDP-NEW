@@ -1,10 +1,11 @@
 global.config = {
-    "PUBLIC_URL": "http://192.168.13.53:8080",
-    "ROUTE_NAME": "/aotm",
-    "SESSION_TIME": "15",
-    "SESSION_IDLE_TIME": "15",
-    "SECRET_KEY": "6D283755BAF744671B72B67BB22E3",
+    "PUBLIC_URL": process.env.REACT_APP_API_BASE_URL || 'http://localhost:3000',
+    "ROUTE_NAME": process.env.REACT_APP_ROUTE_NAME,
+    "SESSION_TIME": process.env.REACT_APP_SESSION_TIME,
+    "SESSION_IDLE_TIME": process.env.REACT_APP_SESSION_IDLE_TIME,
+    "SECRET_KEY": process.env.REACT_APP_SECRET_KEY
 }
+
 global.updateConfig = (newConfig) => {
     global.config = {
       ...global.config,

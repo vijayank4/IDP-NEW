@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import axios from 'axios';
 import ReactPaginate from 'react-paginate';
 import { Link, useNavigate } from 'react-router-dom';
 import decryption from '../Cryptojs/Decryption';
@@ -12,6 +13,7 @@ import toastr from 'toastr';
 const Config = () => {
    
     const [listView, setListView] = useState(true);
+    const [configJsonData, setConfigJsonData] = useState([]);
     const [addView, setAddView] = useState(false);
     const [editView, setEditView] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -30,16 +32,28 @@ const Config = () => {
             setDataLoading(true);
             try {
                 $('.slider-progress-bar').css({"width": "100%"});
+                const postUrl = global.config.PUBLIC_URL+'/api/get_config';
+                const response = await axios.get(postUrl, {
+                    onUploadProgress: (uploadProgressEvent) => {
+                        const currentProgress = uploadProgressEvent.total/2; // Weighted average
+                        $('.slider-progress-bar').css({"width": currentProgress+"%"});
+                    },
+                    onDownloadProgress: (downloadProgressEvent) => {
+                        const completedProgess = (downloadProgressEvent.loaded / downloadProgressEvent.total) * 100;
+                        $('.slider-progress-bar').css({"width": completedProgess+"%"});
+                    },
+                });
                 setTimeout(() => {
                     setLoading(false);
                     setDataLoading(false);
                     $('.slider-progress-bar').hide();
                     $('.slider-progress-bar').css({"width": "0%"});
-                    
+                    const responseJson = JSON.parse(decryption(response.data));
+                    setConfigJsonData(responseJson.data.config);
                     const itemsPerPage = parseInt(global.config.PAGINATOIN_LIMIT);
                     const startIndex = (parseInt(pageOffset)) * itemsPerPage;
                     const endIndex = startIndex + itemsPerPage;
-                    const configJsonData = Object.entries(global.config).filter(([key, value]) => key.toLowerCase().includes(searchText.toLowerCase()));
+                    const configJsonData = Object.entries(responseJson.data.config).filter(([key, value]) => key.toLowerCase().includes(searchText.toLowerCase()));
                     const currentPageData = configJsonData.slice(startIndex, endIndex);
                     setConfigData(currentPageData);
                     setStartIndex(startIndex);
@@ -176,10 +190,10 @@ const Config = () => {
                                 </div>
                             )}
                             {addView && (
-                                <AddConfig handleConfigViewClick={handleConfigViewClick}/>
+                                <AddConfig configJsonData={configJsonData} handleConfigViewClick={handleConfigViewClick}/>
                             )}
                             {editView && (
-                                <EditConfig editConfigData={editConfigData} handleConfigViewClick={handleConfigViewClick}/>
+                                <EditConfig configJsonData={configJsonData} editConfigData={editConfigData} handleConfigViewClick={handleConfigViewClick}/>
                             )}
                         </div>
                     </div>

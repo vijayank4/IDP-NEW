@@ -137,7 +137,7 @@ const AddUser = (props) => {
                 <div className="mb-2">
                     <label htmlFor="userid" className="form-label">User Id: <span style={{color:'red'}}>*</span></label>
                     <div className="input-group input-group-merge">
-                        <input type="text" className={`form-control`} id="userid" name="userid" placeholder="Enter the user id" mandatory="true" alphanumeric="false" value="" onChange={(e) => Validation(e.target,'userid')} />
+                        <input type="text" className={`form-control`} id="userid" name="userid" placeholder="Enter the user id" mandatory="true" alphanumeric="false" onChange={(e) => Validation(e.target,'userid')} />
                         <select className="form-select mw-max-c" id="user_extention" name="user_extention" mandatory="true" onChange={(e) => Validation(e.target,'user_extention')}>
                             <option value="@ninestars.in">@ninestars.in</option>
                             <option value="@ninestar.co.in">@ninestar.co.in</option>
@@ -149,7 +149,7 @@ const AddUser = (props) => {
                 <div className="mb-2">
                     <label htmlFor="password" className="form-label">Password: <span style={{color:'red'}}>*</span></label>
                     <div className="input-group input-group-merge">
-                        <input type="password" value="" className={`form-control`} id="password" name="password" placeholder="Enter the password" passwordpattern="true" onChange={(e) => Validation(e.target,'password')} />
+                        <input type="password" className={`form-control`} id="password" name="password" placeholder="Enter the password" passwordpattern="true" onChange={(e) => Validation(e.target,'password')} />
                         <div className="input-group-text input-grb-radius" data-password="false">
                             <span className="password-eye"></span>
                         </div>
@@ -160,7 +160,7 @@ const AddUser = (props) => {
                 <div className="mb-2">
                     <label htmlFor="repassword" className="form-label">Re-Password: <span style={{color:'red'}}>*</span></label>
                     <div className="input-group input-group-merge">
-                        <input type="password" value="" className={`form-control`} id="repassword" name="repassword" placeholder="Enter the re-password" passwordpattern="true" elementname="password" onChange={(e) => Validation(e.target,'repassword')} />
+                        <input type="password" className={`form-control`} id="repassword" name="repassword" placeholder="Enter the re-password" passwordpattern="true" elementname="password" onChange={(e) => Validation(e.target,'repassword')} />
                         <div className="input-group-text input-grb-radius" data-password="false">
                             <span className="password-eye"></span>
                         </div>
